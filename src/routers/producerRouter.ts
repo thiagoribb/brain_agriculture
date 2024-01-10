@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { createProducerController } from "src/controllers/createProducerController";
+import { deleteProducerController } from "src/controllers/deleteProducerController";
 import { editProducerController } from "src/controllers/editProducerController";
 import { identificationNumberValidator } from "src/middlewares/identificationNumberValidator";
 import { ValidateSchema } from "src/middlewares/validateSchema";
@@ -21,5 +22,6 @@ producerRouter.put(
   validateEditProducerSchema.execute.bind(validateEditProducerSchema),
   editProducerController.execute
 );
+producerRouter.delete("/:id", deleteProducerController.execute);
 
 export default producerRouter;

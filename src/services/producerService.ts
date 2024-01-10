@@ -49,6 +49,15 @@ class ProducerService {
     return existingProducer;
   }
 
+  async deleteProducerById(id: number) {
+    const existingProducer = await producerRepository.findOneBy({ id });
+    if (!existingProducer) {
+      throw new Error(`Producer with ID ${id} not found`);
+    }
+
+    await producerRepository.delete(id);
+  }
+
   dealWithAreasOnCreate(
     totalArea: number,
     arableArea: number,
