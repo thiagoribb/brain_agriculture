@@ -35,6 +35,20 @@ class ProducerService {
     return newProducer;
   }
 
+  async editProducer(id: number, updateFields: Partial<Producer>) {
+    const existingProducer = await producerRepository.findOne({
+      where: { id },
+    });
+    if (!existingProducer) {
+      throw new Error("Producer not found");
+    }
+
+    Object.assign(existingProducer, updateFields);
+    await producerRepository.save(existingProducer);
+
+    return existingProducer;
+  }
+
   async findByIdentificationNumber(identificationNumber: string) {
     const existingProducer = await producerRepository.findOne({
       where: { identificationNumber },

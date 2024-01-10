@@ -1,17 +1,25 @@
-import { Request, Response, Router } from "express";
+import { Router } from "express";
 import { createProducerController } from "src/controllers/createProducerController";
+import { editProducerController } from "src/controllers/editProducerController";
 import { identificationNumberValidator } from "src/middlewares/identificationNumberValidator";
-import { validateSchema } from "src/middlewares/validateSchema";
+import { ValidateSchema } from "src/middlewares/validateSchema";
+import { createProducerSchema } from "src/schemas/createProducerSchema";
+import { editProducerSchema } from "src/schemas/editProducerSchema";
 
 const producerRouter = Router();
+const validateCreateProducerSchema = new ValidateSchema(createProducerSchema);
+const validateEditProducerSchema = new ValidateSchema(editProducerSchema);
 
 producerRouter.post(
   "/",
-  validateSchema.execute,
+  validateCreateProducerSchema.execute.bind(validateCreateProducerSchema),
   identificationNumberValidator.execute,
-  async (req: Request, res: Response) => {
-    await createProducerController.execute(req, res);
-  }
+  createProducerController.execute
+);
+producerRouter.put(
+  "/:id",
+  validateEditProducerSchema.execute.bind(validateEditProducerSchema),
+  editProducerController.execute
 );
 
 export default producerRouter;

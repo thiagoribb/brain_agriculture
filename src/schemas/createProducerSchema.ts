@@ -1,6 +1,6 @@
 import Joi from "joi";
 
-export const producerSchema = Joi.object({
+export const createProducerSchema = Joi.object({
   identificationNumber: Joi.string()
     .trim()
     .min(11)
