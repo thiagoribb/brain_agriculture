@@ -24,6 +24,9 @@ A Brain Agriculture API é uma aplicação para registrar produtores e suas resp
 4. **Inicie os contêineres Docker:**
    ```bash
     docker-compose up -d
+4. **Rodar as migrations e seeds:**
+   ```bash
+    npm run typeorm migration:run
 5. **Execute o servidor em modo de desenvolvimento:**
    ```bash
     npm run dev
