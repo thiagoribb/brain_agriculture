@@ -49,6 +49,55 @@ class ProducerService {
     return existingProducer;
   }
 
+  dealWithAreasOnCreate(
+    totalArea: number,
+    arableArea: number,
+    vegetationArea: number
+  ) {
+    const areTheAreasValid = producerService.areTheAreasValid(
+      totalArea,
+      arableArea,
+      vegetationArea
+    );
+
+    if (!areTheAreasValid) {
+      throw new Error(
+        "Invalid areas: arableArea + vegetationArea must not exceed totalArea"
+      );
+    }
+  }
+
+  async dealWithAreasOnEdit(updateFields: any, id: number) {
+    let producerDataToCompare;
+
+    if (
+      !updateFields.totalArea ||
+      !updateFields.arableArea ||
+      !updateFields.vegetationArea
+    ) {
+      producerDataToCompare = await producerRepository.findOneBy({ id });
+    }
+
+    const totalArea =
+      updateFields.totalArea || producerDataToCompare?.totalArea;
+    const arableArea =
+      updateFields.arableArea || producerDataToCompare?.arableArea;
+    const vegetationArea =
+      updateFields.vegetationArea || producerDataToCompare?.vegetationArea;
+
+    const areTheAreasValid = producerService.areTheAreasValid(
+      totalArea,
+      arableArea,
+      vegetationArea
+    );
+
+    if (!areTheAreasValid) {
+      throw new Error(
+        "Invalid areas: arableArea + vegetationArea must not exceed totalArea"
+      );
+    }
+  }
+
   async findByIdentificationNumber(identificationNumber: string) {
     const existingProducer = await producerRepository.findOne({
       where: { identificationNumber },

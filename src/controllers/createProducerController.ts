@@ -16,33 +16,30 @@ class CreateProducerController {
       producerCrops,
     } = req.body;
 
-    const areTheAreasValid = producerService.areTheAreasValid(
-      totalArea,
-      arableArea,
-      vegetationArea
-    );
+    try {
+      producerService.dealWithAreasOnCreate(
+        totalArea,
+        arableArea,
+        vegetationArea
+      );
 
-    if (!areTheAreasValid) {
-      return res.status(400).json({
-        error: "Validation Error",
-        details:
-          "Invalid areas: arableArea + vegetationArea must not exceed totalArea",
-      });
+      const crops = await cropService.dealWithProducerCrops(producerCrops);
+      const newProducer = await producerService.create(
+        identificationNumber,
+        name,
+        farmName,
+        city,
+        state,
+        totalArea,
+        arableArea,
+        vegetationArea,
+        crops
+      );
+
+      return res.status(201).send(newProducer);
+    } catch (error: any) {
+      return res.status(500).json({ error: error.message });
     }
-    const crops = await cropService.dealWithProducerCrops(producerCrops);
-    const newProducer = await producerService.create(
-      identificationNumber,
-      name,
-      farmName,
-      city,
-      state,
-      totalArea,
-      arableArea,
-      vegetationArea,
-      crops
-    );
-
-    return res.status(201).send(newProducer);
   }
 }
 

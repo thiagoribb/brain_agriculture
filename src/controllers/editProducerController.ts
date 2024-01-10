@@ -7,17 +7,24 @@ class EditProducerController {
   async execute(req: Request, res: Response) {
     const { id } = req.params;
     const updateFields = req.body;
-
-    if (updateFields.producerCrops) {
-      const crops: Crop[] = await cropService.dealWithProducerCrops(
-        updateFields.producerCrops
-      );
-
-      updateFields.crops = crops;
-      delete updateFields.producerCrops;
-    }
+    const areaToValidate =
+      updateFields.totalArea ||
+      updateFields.arableArea ||
+      updateFields.vegetationArea;
 
     try {
+      if (areaToValidate)
+        await producerService.dealWithAreasOnEdit(updateFields, Number(id));
+
+      if (updateFields.producerCrops) {
+        const crops: Crop[] = await cropService.dealWithProducerCrops(
+          updateFields.producerCrops
+        );
+
+        updateFields.crops = crops;
+        delete updateFields.producerCrops;
+      }
+
       const editedProducer = await producerService.editProducer(
         Number(id),
         updateFields

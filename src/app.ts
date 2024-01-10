@@ -11,12 +11,7 @@ app.use(express.json());
 app.use("/api/producer", producerRouter);
 
 app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
-  if (error.message.startsWith("Invalid areas:")) {
-    return res.status(400).json({ error: error.message });
-  }
-
   console.error(error);
-
   return res.status(500).send(error.message);
 });
 
