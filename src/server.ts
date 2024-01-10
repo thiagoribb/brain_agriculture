@@ -2,10 +2,9 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import app from "./app";
-import connectDb from "./data-source";
+import AppDataSource from "./data-source";
 
-connectDb
-  .initialize()
+AppDataSource.initialize()
   .then(() => {
     console.log(`Data Source has been initialized`);
     const PORT = parseInt(`${process.env.PORT || 3000}`);

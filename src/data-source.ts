@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
 
-const connectDb = new DataSource({
+const AppDataSource = new DataSource({
   type: "postgres",
   host: "localhost",
   port: 5432,
@@ -14,4 +14,4 @@ const connectDb = new DataSource({
   migrations: ["./src/migrations/*.ts"],
 });
 
-export default connectDb;
+export default AppDataSource;
