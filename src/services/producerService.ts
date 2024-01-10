@@ -115,6 +115,26 @@ class ProducerService {
     return existingProducer;
   }
 
+  async getById(id: number) {
+    const producer = await producerRepository.findOne({
+      where: { id },
+      relations: ["crops"],
+    });
+    if (!producer) {
+      throw new Error(`Producer with ID ${id} not found`);
+    }
+
+    return producer;
+  }
+
+  async getAll() {
+    const allProducers = await producerRepository.find({
+      relations: ["crops"],
+    });
+
+    return allProducers;
+  }
+
   areTheAreasValid(
     totalArea: number,
     arableArea: number,

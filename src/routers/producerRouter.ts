@@ -2,6 +2,7 @@ import { Router } from "express";
 import { createProducerController } from "src/controllers/createProducerController";
 import { deleteProducerController } from "src/controllers/deleteProducerController";
 import { editProducerController } from "src/controllers/editProducerController";
+import { getProducerController } from "src/controllers/getProducerController";
 import { identificationNumberValidator } from "src/middlewares/identificationNumberValidator";
 import { ValidateSchema } from "src/middlewares/validateSchema";
 import { createProducerSchema } from "src/schemas/createProducerSchema";
@@ -23,5 +24,6 @@ producerRouter.put(
   editProducerController.execute
 );
 producerRouter.delete("/:id", deleteProducerController.execute);
+producerRouter.get("/:id?", getProducerController.execute);
 
 export default producerRouter;
