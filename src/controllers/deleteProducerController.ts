@@ -6,7 +6,7 @@ class DeleteProducerController {
     const { id } = req.params;
 
     try {
-      await producerService.deleteProducerById(Number(id));
+      await producerService.deleteById(Number(id));
 
       return res.status(200).json({ message: "Producer deleted" });
     } catch (error: any) {

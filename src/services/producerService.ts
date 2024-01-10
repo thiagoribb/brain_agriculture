@@ -35,7 +35,7 @@ class ProducerService {
     return newProducer;
   }
 
-  async editProducer(id: number, updateFields: Partial<Producer>) {
+  async edit(id: number, updateFields: Partial<Producer>) {
     const existingProducer = await producerRepository.findOne({
       where: { id },
     });
@@ -49,11 +49,8 @@ class ProducerService {
     return existingProducer;
   }
 
-  async deleteProducerById(id: number) {
-    const existingProducer = await producerRepository.findOneBy({ id });
-    if (!existingProducer) {
-      throw new Error(`Producer with ID ${id} not found`);
-    }
+  async deleteById(id: number) {
+    await this.getById(id);
 
     await producerRepository.delete(id);
   }
@@ -84,7 +81,7 @@ class ProducerService {
       !updateFields.arableArea ||
       !updateFields.vegetationArea
     ) {
-      producerDataToCompare = await producerRepository.findOneBy({ id });
+      producerDataToCompare = await this.getById(id);
     }
 
     const totalArea =

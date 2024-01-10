@@ -25,7 +25,7 @@ class EditProducerController {
         delete updateFields.producerCrops;
       }
 
-      const editedProducer = await producerService.editProducer(
+      const editedProducer = await producerService.edit(
         Number(id),
         updateFields
       );
