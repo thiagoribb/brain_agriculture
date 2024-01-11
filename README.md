@@ -13,7 +13,7 @@ A Brain Agriculture API é uma aplicação para registrar produtores e suas resp
 1. **Clone o repositório:**
 
    ```bash
-    git clone https://github.com/seu-usuario/brain-agriculture.git
+    git clone https://github.com/thiagoribb/brain-agriculture.git
 2. **Navegue até o diretório do projeto:**
    ```bash
     cd brain-agriculture
