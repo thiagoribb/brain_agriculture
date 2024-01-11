@@ -9,7 +9,7 @@ class IdentificationNumberValidator {
     const validIdentificationNumber =
       cpf.isValid(identificationNumber) || cnpj.isValid(identificationNumber);
     if (!validIdentificationNumber) {
-      return res.status(400).json({ error: "CPF or CNPJ is not valid." });
+      return res.status(422).json({ error: "CPF or CNPJ is not valid." });
     }
 
     const existingProducer = await producerService.findByIdentificationNumber(

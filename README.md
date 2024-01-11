@@ -31,6 +31,18 @@ A Brain Agriculture API é uma aplicação para registrar produtores e suas resp
    ```bash
     npm run dev
 
+## Documentação da API
+
+Após iniciar o projeto, você pode explorar a documentação da API para obter informações detalhadas sobre os endpoints disponíveis. Siga as instruções abaixo para acessar a documentação:
+
+1. Certifique-se de que o projeto esteja em execução.
+
+2. Abra o navegador e vá para [http://localhost:3000/api-docs](http://localhost:3000/api-docs).
+
+3. A documentação Swagger será exibida, fornecendo uma visão interativa dos endpoints, parâmetros e respostas da API.
+
+Explore e experimente os endpoints diretamente na documentação para entender melhor como usar a API.
+
 ## Uso
 
 Acesse a API em http://localhost:3000/api/producer para interagir com os produtores.
