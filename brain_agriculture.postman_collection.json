@@ -1,0 +1,310 @@
+{
+	"info": {
+		"_postman_id": "79796565-60c5-4d77-bc4d-655ecc4f69dd",
+		"name": "brain_agriculture",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13440860"
+	},
+	"item": [
+		{
+			"name": "post 200",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"identificationNumber\": \"16071371783\",\n    \"name\": \"thiago\",\n    \"farmName\": \"fazenda\",\n    \"city\": \"tres rios\",\n    \"state\": \"rj\",\n    \"totalArea\": 3,\n    \"arableArea\": 1,\n    \"vegetationArea\": 2,\n    \"producerCrops\": [\"milho\", \"uva\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/producer",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"producer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post schema error",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"identificationNumber\": \"16071371783123123123\",\n    \"name\": \"thiago\",\n    \"farmName\": \"fazenda\",\n    \"city\": \"tres rios\",\n    \"state\": \"rj\",\n    \"totalArea\": 3,\n    \"arableArea\": 1,\n    \"vegetationArea\": 2,\n    \"producerCrops\": [\"milho\", \"uva\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/producer",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"producer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post area error",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"identificationNumber\": \"03049609699\",\n    \"name\": \"thiago\",\n    \"farmName\": \"fazenda\",\n    \"city\": \"tres rios\",\n    \"state\": \"rj\",\n    \"totalArea\": 3,\n    \"arableArea\": 5,\n    \"vegetationArea\": 2,\n    \"producerCrops\": [\"milho\", \"uva\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/producer",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"producer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit not found",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"novo nome\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/producer/10230230",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"producer",
+						"10230230"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit schema error",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": 1234\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/producer/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"producer",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit area error",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"1234\",\n    \"arableArea\": 2,\n    \"totalArea\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/producer/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"producer",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit 200",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"novo nome\",\n    \"producerCrops\": [\"aipim\", \"maçã\"],\n    \"totalArea\": 60\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/producer/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"producer",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete 200",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/producer/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"producer",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete error",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/producer/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"producer",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all 200",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/producer/",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"producer",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get one",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/producer/2",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"producer",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get one error",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/producer/10000",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"producer",
+						"10000"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
