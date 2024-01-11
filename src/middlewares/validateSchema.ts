@@ -12,7 +12,7 @@ export class ValidateSchema {
         (detail: { message: any }) => detail.message
       );
       return res
-        .status(400)
+        .status(422)
         .json({ error: "Validation Error", details: errors });
     }
 
